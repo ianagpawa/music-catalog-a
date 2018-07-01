@@ -1,19 +1,19 @@
 # Angular Webpack Seed
 ### By Ian Agpawa
-##### This is an Angular with Webpack seed project.
+##### This is an Angular with Webpack project seed.  It is for creating Angular projects with Typescript and SCSS without the use of the Angular CLI.
 
 
 ### Quick Start
--Clone the repo: `git clone https://github.com/ianagpawa/portfolio.git`
+-Clone the repo: `git clone https://github.com/ianagpawa/angular-webpack-seed.git`
 
 ### Install Dependencies
 
-1.  `npm` and `node`, must be installed on your system.  Using your command line, use the following commands to check your `npm` and `node` versions:
+1.  `npm` and `node` must be installed on your system.  Using a terminal/console, execute the following commands to check your `npm` and `node` versions:
 ```
 $   npm -v
 $   node -v
 ```
-2. While in the project folder, execute the following command to install dependencies:
+2. Using the terminal, navigate to project folder and execute the following command to install dependencies:
 ```
 $   npm install
 ```
@@ -39,14 +39,14 @@ angular-webpack-seed/
     |   ├── webpack.common.js
     |   ├── webpack.dev.js
     |   ├── webpack.prod.js
-    |   └─── webpack.test.js
+    |   └── webpack.test.js
     ├── src/
     |   ├── root/
     |   |   ├── root.component.html
     |   |   ├── root.component.scss
     |   |   ├── root.component.spec.ts
     |   |   ├── root.component.ts
-    |   |   └─── root.module.ts
+    |   |   └── root.module.ts
     |   ├── app.scss
     |   ├── app.ts
     |   ├── index.html
