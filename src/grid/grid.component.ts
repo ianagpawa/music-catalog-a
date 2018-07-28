@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-require('./root.component.scss');
+require('./grid.component.scss');
 
 @Component({
-    selector: 'root-app',
-    templateUrl: './root.component.html',
+    selector: 'grid-comp',
+    templateUrl: './grid.component.html',
 })
-export class RootComponent { 
+export class GridComponent { 
+    
     columnDefs = [
         {headerName: 'Make', field: 'make' },
         {headerName: 'Model', field: 'model' },
