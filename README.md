@@ -46,15 +46,62 @@ $   sudo apt-get -y install gcc make linux-headers-$(uname -r) dkms
 $   sudo apt-get install virtualbox-5.2
 ```
 
+#### Vagrant
+Installation
+```
+$   sudo apt-get install vagrant
+```
 
 
 ### Viewing the app locally
-Execute the following command while in the project folder:
-```
-$   npm start
-```
-Then point your browser to `http://0.0.0.0:8080/`.
 
+Vagrantfile
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.provision "shell", path: "pg_config.sh"
+  config.vm.box = "hashicorp/precise32"
+  # config.vm.box = "hashicorp/precise32"
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 5000, host: 5000
+end
+
+```
+
+vagrant_config.sh
+```
+apt-get -qqy update
+apt-get -qqy install postgresql python-psycopg2
+apt-get -qqy install python-flask python-sqlalchemy
+apt-get -qqy install python-pip
+pip install bleach
+pip install oauth2client
+pip install requests
+pip install httplib2
+pip install redis
+pip install passlib
+pip install itsdangerous
+pip install flask-httpauth
+su postgres -c 'createuser -dRS vagrant'
+su vagrant -c 'createdb'
+su vagrant -c 'createdb forum'
+su vagrant -c 'psql forum -f /vagrant/forum/forum.sql'
+
+vagrantTip="[35m[1mThe shared directory is located at /vagrant\nTo access your shared files: cd /vagrant(B[m"
+echo -e $vagrantTip > /etc/motd
+
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+make install
+
+```
 
 
 ### What's included
