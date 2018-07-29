@@ -5,7 +5,8 @@
 
 ### Quick Start
 Clone the repo: 
-```git clone https://github.com/ianagpawa/music-catalog-angular.git
+```
+git clone https://github.com/ianagpawa/music-catalog-angular.git
 ```
 
 ### Install Dependencies
@@ -53,9 +54,10 @@ $   sudo apt-get install vagrant
 ```
 
 
-### Viewing the app locally
+#### Necessary files
+`Vagrantfile` and `vagrant_config.sh` files must be included in the `backend` folder:
 
-Vagrantfile
+##### Vagrantfile
 ```
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
@@ -70,10 +72,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8080, host: 8080
   config.vm.network "forwarded_port", guest: 5000, host: 5000
 end
-
 ```
 
-vagrant_config.sh
+##### vagrant_config.sh
 ```
 apt-get -qqy update
 apt-get -qqy install postgresql python-psycopg2
@@ -100,43 +101,55 @@ tar xvzf redis-stable.tar.gz
 cd redis-stable
 make
 make install
-
 ```
 
+### Viewing the app locally
+
+#### Angular
+Navigate into the `frontend` folder and execute the following command:
+```
+$   npm start
+```
+Open your browser and nvagiate to `localhost:8080` to view the app.
+#### Vagrant
 
 ### What's included
 Within the project folder, you will find the following files:
 
 ```
 music-catalog-angular/
-    ├── config/
-    |   ├── helpers.js
-    |   ├── karma-test-shim.js
-    |   ├── karma.config.js
-    |   ├── webpack.common.js
-    |   ├── webpack.dev.js
-    |   ├── webpack.prod.js
-    |   └── webpack.test.js
-    ├── src/
-    |   ├── root/
-    |   |   ├── root.component.html
-    |   |   ├── root.component.scss
-    |   |   ├── root.component.spec.ts
-    |   |   ├── root.component.ts
-    |   |   └── root.module.ts
-    |   ├── app.scss
-    |   ├── app.ts
-    |   ├── index.html
-    |   ├── main.ts
-    |   ├── polyfills.ts
-    |   ├── tsconfig.json
-    |   └── vendor.ts
-    ├── .gitignore
-    ├── .npmrc
-    ├── karma.conf.js
-    ├── package.json
-    ├── README.md
-    └── webpack.config.js
+  ├── backend/
+  |     ├── vagrant_config.sh
+  |     └── Vagrantfile
+  └── frontend/
+        ├── config/
+        |   ├── helpers.js
+        |   ├── karma-test-shim.js
+        |   ├── karma.config.js
+        |   ├── webpack.common.js
+        |   ├── webpack.dev.js
+        |   ├── webpack.prod.js
+        |   └── webpack.test.js
+        ├── src/
+        |   ├── root/
+        |   |   ├── root.component.html
+        |   |   ├── root.component.scss
+        |   |   ├── root.component.spec.ts
+        |   |   ├── root.component.ts
+        |   |   └── root.module.ts
+        |   ├── app.scss
+        |   ├── app.ts
+        |   ├── index.html
+        |   ├── main.ts
+        |   ├── polyfills.ts
+        |   ├── tsconfig.json
+        |   └── vendor.ts
+        ├── .gitignore
+        ├── .npmrc
+        ├── karma.conf.js
+        ├── package.json
+        ├── README.md
+        └── webpack.config.js
 ```
 
 ### Links
