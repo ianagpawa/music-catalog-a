@@ -111,7 +111,26 @@ Navigate into the `frontend` folder and execute the following command:
 $   npm start
 ```
 Open your browser and nvagiate to `localhost:8080` to view the app.
+
 #### Vagrant
+Navigate the terminal into the backend folder and then run the following commands:
+```
+$   vagrant up
+$   vagrant ssh
+```
+
+Once in the VM, the user name and system on the terminal will change to the follow: 
+```
+vagrant@ubuntu-xenial:~$ 
+```
+
+From here navigate into the shared `vagrant` folder and run the follow commands:
+```
+vagrant@ubuntu-xenial:~$    cd /vagrant
+vagrant@ubuntu-xenial:~$    python __init__.py
+```
+Navigate your browser to `localhost:8000`
+
 
 ### What's included
 Within the project folder, you will find the following files:
