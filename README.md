@@ -138,6 +138,16 @@ Within the project folder, you will find the following files:
 ```
 music-catalog-angular/
   ├── backend/
+  |     ├── Models
+  |     |   ├── __init__.py
+  |     |   ├── Base.py
+  |     |   ├── Playlist.py
+  |     |   ├── Song.py
+  |     |   └── User.py
+  |     ├── __init__.py
+  |     ├── app.yaml
+  |     ├── db_setup.py
+  |     ├── load_songs.py
   |     ├── vagrant_config.sh
   |     └── Vagrantfile
   └── frontend/
