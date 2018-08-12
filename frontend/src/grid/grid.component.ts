@@ -16,7 +16,9 @@ export class GridComponent {
     ) {}
 
     ngOnInit(){
-        console.log(this.GridService.getPlaylists());
+        
+        const p = this.GridService.getPlaylists();
+        debugger;
         let columnDefs = [
             {headerName: 'Make', field: 'make' },
             {headerName: 'Model', field: 'model' },
