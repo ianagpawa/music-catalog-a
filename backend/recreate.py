@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
+import json
 
 from db_setup import Base, Playlist, Song, User
 
@@ -87,16 +88,20 @@ def addPlaylist(playlist_obj):
 
 
 def getPlaylist(id):
-  return None
+  return session.query(Playlist).filter_by(id=id).one()
+
 
 
 def addSong(song_obj):
-  song = Song(user_id=1,
-    title="Jamming on the G2",
-    artist='Shook',
-    genre="Electronic Funk",
-    youtube="7O1iKYcUTTk",
-    playlist=1)
+  youtube_link = (song_obj['youtube']).split("=")
+  song = Song(user_id=int(song_obj['user_id']),
+    title=song_obj['title'],
+    artist=song_obj['artist'],
+    genre=song_obj['genre'],
+    youtube=youtube_link,
+    time_created=datetime.strptime(song_obj['time_created'], "%B %d, %Y"),
+    playlist=getPlaylist(int(song_obj['playlist_id'])),
+    playlist_id=int(song_obj['playlist_id']))
   session.add(song)
 
 
@@ -105,4 +110,12 @@ def loadPlaylists(playlists):
       addPlaylist(playlist)
   session.commit()
 
+def load_songs(json_file):
+  with open(json_file) as f:
+    data = json.load(f)
+    for song in data:
+      addSong(song)
+  session.commit()
+
 loadPlaylists(test)
+load_songs('SONGS.json')
