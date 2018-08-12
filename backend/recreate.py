@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 
 from db_setup import Base, Playlist, Song, User
 
@@ -78,7 +79,7 @@ test = [
 
 
 def addPlaylist(playlist_obj):
-    playlist = Playlist(user_id=int(playlist_obj["user_id"]), name=playlist_obj["name"], description=playlist_obj["description"])
+    playlist = Playlist(user_id=int(playlist_obj["user_id"]), name=playlist_obj["name"], description=playlist_obj["description"], time_created=datetime.strptime(playlist_obj['time_created'], "%B %d, %Y"))
     session.add(playlist)
 
 
