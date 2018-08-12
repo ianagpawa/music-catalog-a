@@ -1,4 +1,3 @@
-
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -54,7 +53,7 @@ session.add(song2)
 session.commit()
 
 
-print "added playlist songs!"
+print("added playlist songs!")
 
 
 #

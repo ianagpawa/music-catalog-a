@@ -7,4 +7,7 @@ export class GridService {
         private ApiService: ApiService
     ) { }
 
+    getPlaylists() {
+        return this.ApiService.getAllPlaylists();
+    }
 }
