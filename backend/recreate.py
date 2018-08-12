@@ -79,27 +79,30 @@ test = [
 
 
 def addPlaylist(playlist_obj):
-    playlist = Playlist(user_id=int(playlist_obj["user_id"]), name=playlist_obj["name"], description=playlist_obj["description"], time_created=datetime.strptime(playlist_obj['time_created'], "%B %d, %Y"))
-    session.add(playlist)
+  playlist = Playlist(user_id=int(playlist_obj["user_id"]), 
+    name=playlist_obj["name"], 
+    description=playlist_obj["description"], 
+    time_created=datetime.strptime(playlist_obj['time_created'], "%B %d, %Y"))
+  session.add(playlist)
 
 
 def getPlaylist(id):
-    return None
+  return None
 
 
 def addSong(song_obj):
-    song = Song(user_id=1,
-                title="Jamming on the G2",
-                artist='Shook',
-                genre="Electronic Funk",
-                youtube="7O1iKYcUTTk",
-                playlist=1)
-    session.add(song)
+  song = Song(user_id=1,
+    title="Jamming on the G2",
+    artist='Shook',
+    genre="Electronic Funk",
+    youtube="7O1iKYcUTTk",
+    playlist=1)
+  session.add(song)
 
 
 def loadPlaylists(playlists):
-    for playlist in playlists:
-        addPlaylist(playlist)
-    session.commit()
+  for playlist in playlists:
+      addPlaylist(playlist)
+  session.commit()
 
 loadPlaylists(test)
