@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Http, Headers, Response } from '@angular/http';
 import { from } from 'rxjs/observable/from';
-import { getAllOrdered } from './JSON/util'
+import { getAllOrdered, getPlaylists } from './JSON/util'
 
 
 @Injectable()
@@ -13,5 +13,9 @@ export class ApiService {
 
     getAllPlaylists() {
         return getAllOrdered();
+    }
+
+    getOrderedPlaylistJSON() {
+        return getPlaylists();
     }
 }

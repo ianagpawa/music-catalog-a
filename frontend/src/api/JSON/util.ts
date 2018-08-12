@@ -8,6 +8,7 @@ const HOWLIN = require('./6-Howlin.json');
 const FOREIGN = require('./7-Foreign.json');
 const RAPTASTIC = require('./8-Raptastic.json');
 const SOUNDSCAPE = require('./9-Soundscape.json');
+const PLAYLISTS = require('./PLAYLISTS.json');
 
 const getAllPlaylists = (): any[] => {
     return [
@@ -21,6 +22,17 @@ const getAllPlaylists = (): any[] => {
         RAPTASTIC,
         SOUNDSCAPE
     ]
+}
+
+const orderArray = (arr: any[]): any[] => {
+    return arr.sort((a,b) => {
+        return a.id - b.id;
+    })
+}
+
+
+export const getPlaylists = () => {
+    return orderArray(PLAYLISTS.Playlists);
 }
 
 
