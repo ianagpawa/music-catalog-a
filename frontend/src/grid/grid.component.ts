@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid';
+import { GridService } from './grid.service';
 
 require('./grid.component.scss');
 
@@ -8,29 +9,36 @@ require('./grid.component.scss');
     templateUrl: './grid.component.html',
 })
 export class GridComponent {
-    gridOptions: GridOptions = {}
-    columnDefs: ColDef[];
-    rowData: any;
-
-    constructor(){
-
+    gridOptions: GridOptions;
+    
+    constructor(
+        private GridService: GridService
+    ){
+        // this.GridService.getFirst();
     }
 
     ngOnInit(){
-        this.columnDefs = [
-            {headerName: 'Title', field: 'title' },
-            {headerName: 'Artist', field: 'artist' },
-            {headerName: 'Youtube Link', field: 'youtube'}
+        let columnDefs = [
+            {headerName: 'Make', field: 'make' },
+            {headerName: 'Model', field: 'model' },
+            {headerName: 'Price', field: 'price'}
+        ];
+    
+        let rowData = [
+            { make: 'Toyota', model: 'Celica', price: 35000 },
+            { make: 'Ford', model: 'Mondeo', price: 32000 },
+            { make: 'Porsche', model: 'Boxter', price: 72000 }
         ];
 
-        this.rowData = [
-            {title: "In The Fall", artist: "Future Island", youtube: "https://youtu.be/0rUgAPuMlPw"}
-        ];
+        this.gridOptions = {
+            columnDefs,
+            rowData
+        }
+
     }
 
     ngAfterViewInit(){
-        this.gridOptions.api.setColumnDefs(this.columnDefs);
-        this.gridOptions.api.setRowData(this.rowData)
+        
     }
 
 
