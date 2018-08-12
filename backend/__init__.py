@@ -94,7 +94,7 @@ def showSingleJSON(playlist_id, song_id):
     return jsonify(Song=song.serialize)
 
 
-@app.route('/songs/JSON')
+@app.route('/songs/JSON/')
 def showAllSongsJSON():
     songs = session.query(Song).all()
     return jsonify(Songs=[song.serialize for song in songs])

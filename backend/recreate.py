@@ -93,12 +93,11 @@ def getPlaylist(id):
 
 
 def addSong(song_obj):
-  youtube_link = (song_obj['youtube']).split("=")
   song = Song(user_id=int(song_obj['user_id']),
     title=song_obj['title'],
     artist=song_obj['artist'],
     genre=song_obj['genre'],
-    youtube=youtube_link,
+    youtube=song_obj['youtube'],
     time_created=datetime.strptime(song_obj['time_created'], "%B %d, %Y"),
     playlist=getPlaylist(int(song_obj['playlist_id'])),
     playlist_id=int(song_obj['playlist_id']))

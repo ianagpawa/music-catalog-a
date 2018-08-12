@@ -46,7 +46,7 @@ class Song(Base):
             'title': self.title,
             'artist': self.artist,
             'genre': self.genre,
-            'youtube': "https://www.youtube.com/watch?v=%s" % self.youtube,
+            'youtube': self.youtube,
             'rendition': self.rendition,
             'playlist_id': self.playlist_id,
             'user_id': self.user_id,
