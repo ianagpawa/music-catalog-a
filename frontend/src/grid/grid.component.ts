@@ -15,6 +15,7 @@ export class GridComponent {
         private GridService: GridService
     ){
         // this.GridService.getFirst();
+        console.log(this.GridService.getPlaylists());
     }
 
     ngOnInit(){

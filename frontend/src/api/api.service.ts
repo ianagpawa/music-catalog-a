@@ -19,10 +19,31 @@ export class ApiService {
 
     }
 
-    getHappenstance() {
-        console.log(HAPPENSTANCE)
+    getAllPlaylists(): any[] {
+        return [
+            HAPPENSTANCE,
+            ANNICA,
+            MOBIUROBOROS,
+            PORTMANTEU,
+            NOSTALGIA,
+            HOWLIN,
+            FOREIGN,
+            RAPTASTIC,
+            SOUNDSCAPE
+        ]
     }
-    // getHappenstance(): Observable<any> {
-    //     return new Observable(HAPPENSTANCE)
-    // }
+
+    getAllOrdered(): any[] {
+        const playlists = this.getAllPlaylists().map((arr) => {
+            return arr.Songs
+        })
+        
+        return [].concat(...playlists)  
+            .sort((a,b) => {
+                return a.id - b.id
+            })
+            // .map((song) => {
+                
+            // })
+    }
 }

@@ -7,9 +7,8 @@ export class GridService {
         private ApiService: ApiService
     ) { }
 
-    getFirst() {
-        // return this.ApiService.getHappenstance().subscribe((data) => {
-        //     console.log(data);
-        // });
+    
+    getPlaylists() {
+        return this.ApiService.getAllOrdered();
     }
 }
