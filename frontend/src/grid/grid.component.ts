@@ -13,10 +13,7 @@ export class GridComponent {
     
     constructor(
         private GridService: GridService
-    ){
-        // this.GridService.getFirst();
-        console.log(this.GridService.getPlaylists());
-    }
+    ) {}
 
     ngOnInit(){
         let columnDefs = [
