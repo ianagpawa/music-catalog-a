@@ -1,67 +1,65 @@
-{
-    "Playlists": [
-      {
-        "description": "Songs to lose yourself in the moment", 
-        "id": 3, 
-        "name": "Mobiuroboros", 
-        "time_created": "March 18, 2017", 
-        "user_id": 1
-      }, 
-      {
-        "description": "Mashups and remixes of the unexpected", 
-        "id": 4, 
-        "name": "Portmanteu", 
-        "time_created": "March 19, 2017", 
-        "user_id": 1
-      }, 
-      {
-        "description": "Live renditions", 
-        "id": 2, 
-        "name": "Anicca", 
-        "time_created": "March 18, 2017", 
-        "user_id": 1
-      }, 
-      {
-        "description": "Songs that mark earlier points in my life.  ", 
-        "id": 5, 
-        "name": "Nostalgia", 
-        "time_created": "May 19, 2017", 
-        "user_id": 1
-      }, 
-      {
-        "description": "Ballads", 
-        "id": 6, 
-        "name": "Howlin'", 
-        "time_created": "May 20, 2017", 
-        "user_id": 1
-      }, 
-      {
-        "description": "Songs from afar", 
-        "id": 7, 
-        "name": "Foreign", 
-        "time_created": "May 20, 2017", 
-        "user_id": 1
-      }, 
-      {
-        "description": "Hip hop and rap", 
-        "id": 8, 
-        "name": "Raptastic", 
-        "time_created": "May 20, 2017", 
-        "user_id": 1
-      }, 
-      {
-        "description": "Randomly encountered in synchronicity", 
-        "id": 1, 
-        "name": "Happenstance", 
-        "time_created": "March 18, 2017", 
-        "user_id": 1
-      }, 
-      {
-        "description": "Songs without lyrics", 
-        "id": 9, 
-        "name": "Soundscape", 
-        "time_created": "August 01, 2017", 
-        "user_id": 1
-      }
-    ]
+{"Playlists": [
+  {
+    "description": "Randomly encountered in synchronicity",
+    "id": 1,
+    "name": "Happenstance",
+    "time_created": "March 18, 2017",
+    "user_id": 1
+  },
+  {
+    "description": "Live renditions",
+    "id": 2,
+    "name": "Anicca",
+    "time_created": "March 18, 2017",
+    "user_id": 1
+  },
+  {
+    "description": "Songs to lose yourself in the moment",
+    "id": 3,
+    "name": "Mobiuroboros",
+    "time_created": "March 18, 2017",
+    "user_id": 1
+  },
+  {
+    "description": "Mashups and remixes of the unexpected",
+    "id": 4,
+    "name": "Portmanteu",
+    "time_created": "March 19, 2017",
+    "user_id": 1
+  },
+  {
+    "description": "Songs that mark earlier points in my life.  ",
+    "id": 5,
+    "name": "Nostalgia",
+    "time_created": "May 19, 2017",
+    "user_id": 1
+  },
+  {
+    "description": "Ballads",
+    "id": 6,
+    "name": "Howlin'",
+    "time_created": "May 20, 2017",
+    "user_id": 1
+  },
+  {
+    "description": "Songs from afar",
+    "id": 7,
+    "name": "Foreign",
+    "time_created": "May 20, 2017",
+    "user_id": 1
+  },
+  {
+    "description": "Hip hop and rap",
+    "id": 8,
+    "name": "Raptastic",
+    "time_created": "May 20, 2017",
+    "user_id": 1
+  },
+  {
+    "description": "Songs without lyrics",
+    "id": 9,
+    "name": "Soundscape",
+    "time_created": "August 01, 2017",
+    "user_id": 1
   }
+]}

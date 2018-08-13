@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Http, Headers, Response } from '@angular/http';
-import { from } from 'rxjs/observable/from';
-import { getAllOrdered, getPlaylists } from './JSON/util'
+import { of } from 'rxjs/observable/of';
+const PLAYLISTS = require('./JSON/PLAYLISTS.json')
+const SONGS = require('./JSON/SONGS.json');
 
 
 @Injectable()
@@ -11,11 +12,11 @@ export class ApiService {
 
     }
 
-    getAllPlaylists() {
-        return getAllOrdered();
+    getAllMockPlaylists(): Observable<any> {
+        return of(PLAYLISTS);
     }
 
-    getOrderedPlaylistJSON() {
-        return getPlaylists();
+    getAllMockSongs(): Observable<any> {
+        return of(SONGS)
     }
 }

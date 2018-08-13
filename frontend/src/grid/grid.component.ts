@@ -1,6 +1,10 @@
 import { Component, Input, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid';
 import { GridService } from './grid.service';
+import { Subscription } from 'rxjs';
+import { forkJoin } from 'rxjs/observable/forkJoin';
+
+import { GRID_CONFIG } from './grid.config';
 
 require('./grid.component.scss');
 
@@ -8,44 +12,45 @@ require('./grid.component.scss');
     selector: 'grid-comp',
     templateUrl: './grid.component.html',
 })
+
 export class GridComponent {
     gridOptions: GridOptions;
+    subscriptions: Subscription[];
     
     constructor(
         private GridService: GridService
     ) {}
 
     ngOnInit(){
-        
-        const p = this.GridService.getPlaylists();
-        console.log(p)
-        debugger;
-        let columnDefs = [
-            {headerName: 'Make', field: 'make' },
-            {headerName: 'Model', field: 'model' },
-            {headerName: 'Price', field: 'price'}
-        ];
+        this.subscriptions = [];
     
-        let rowData = [
-            { make: 'Toyota', model: 'Celica', price: 35000 },
-            { make: 'Ford', model: 'Mondeo', price: 32000 },
-            { make: 'Porsche', model: 'Boxter', price: 72000 }
-        ];
-
         this.gridOptions = {
-            columnDefs,
-            rowData
+            columnDefs: GRID_CONFIG.COLUMN_DEFS,
+            rowData: []
         }
 
     }
 
     ngAfterViewInit(){
-        
+        const calls = [
+            this.GridService.getAllMockPlaylists(),
+            this.GridService.getAllMockSongs()
+        ];
+        this.subscriptions.push(forkJoin(...calls).subscribe((data) => {
+            const playlists = data[0];
+            const songs = data[1];
+            this.gridOptions.api.setRowData(songs.Songs);
+        }))
+
     }
 
 
     ngOnDestroy(){
+        if (this.subscriptions) {
+            this.subscriptions.forEach((s) => s.unsubscribe());
 
+        }
+        this.subscriptions.length = 0;
     }
     
     

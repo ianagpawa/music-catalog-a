@@ -7,11 +7,11 @@ export class GridService {
         private ApiService: ApiService
     ) { }
 
-    getAllSongs() {
-        return this.ApiService.getAllPlaylists();
+    getAllMockPlaylists() {
+        return this.ApiService.getAllMockPlaylists();
     }
 
-    getPlaylists() {
-        return this.ApiService.getOrderedPlaylistJSON();
+    getAllMockSongs() {
+        return this.ApiService.getAllMockSongs();
     }
 }
