@@ -26,7 +26,9 @@ export class GridComponent {
     
         this.gridOptions = {
             columnDefs: GRID_CONFIG.COLUMN_DEFS,
-            rowData: []
+            rowData: [],
+            onRowDoubleClicked: this.rowDoubleClicked,
+            enableSorting: true
         }
 
     }
@@ -53,6 +55,9 @@ export class GridComponent {
         this.subscriptions.length = 0;
     }
     
+    rowDoubleClicked() {
+        console.log('something')
+    }
     
 
 }
