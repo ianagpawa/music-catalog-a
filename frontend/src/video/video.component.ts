@@ -13,6 +13,9 @@ require('./video.component.scss');
 export class VideoComponent {
     subscriptions: Subscription[];
     player: YT.Player;
+    artist: string ='test'
+    title: string = 'Something'
+    info: string = 'test info'
     private id: string = 'i-LuC518Euc';
     
     
@@ -20,7 +23,6 @@ export class VideoComponent {
 
     ngOnInit(){
         this.subscriptions = [];
-
     }
 
     ngAfterViewInit(){
