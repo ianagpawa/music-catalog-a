@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { GridService } from '../grid/grid.service';
 
 
 require('./video.component.scss');
@@ -19,13 +20,28 @@ export class VideoComponent {
     private id: string = 'i-LuC518Euc';
     
     
-    constructor() {}
+    constructor(private GridService: GridService) {}
 
     ngOnInit(){
         this.subscriptions = [];
     }
 
     ngAfterViewInit(){
+        if (this.GridService.selectedSongStatus) {
+            this.subscriptions.push(
+                this.GridService.selectedSongStatus.subscribe((data) => {
+                    if (data && data.data) {
+                        const song = data.data
+                        this.title = song.title;
+                        this.artist = song.artist;
+                        this.player.loadVideoById(song.youtube);
+                        this.player.playVideo();
+                    }
+                    
+                })
+            )
+        }
+        
         
     }
 

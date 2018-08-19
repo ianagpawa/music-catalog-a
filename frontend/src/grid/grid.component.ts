@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid';
 import { GridService } from './grid.service';
 import { Subscription } from 'rxjs';
@@ -17,6 +17,7 @@ export class GridComponent {
     gridOptions: GridOptions;
     subscriptions: Subscription[];
     
+    
     constructor(
         private GridService: GridService
     ) {}
@@ -27,7 +28,9 @@ export class GridComponent {
         this.gridOptions = {
             columnDefs: GRID_CONFIG.COLUMN_DEFS,
             rowData: [],
-            onRowDoubleClicked: this.rowDoubleClicked,
+            onRowDoubleClicked: (rowData: any) => {
+                this.GridService.setSelectedSong(rowData)
+            },
             enableSorting: true
         }
 
@@ -55,9 +58,4 @@ export class GridComponent {
         this.subscriptions.length = 0;
     }
     
-    rowDoubleClicked() {
-        console.log('something')
-    }
-    
-
 }
