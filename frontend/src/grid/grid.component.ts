@@ -1,5 +1,10 @@
 import { Component, Input, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid';
+import { GridService } from './grid.service';
+import { Subscription } from 'rxjs';
+import { forkJoin } from 'rxjs/observable/forkJoin';
+
+import { GRID_CONFIG } from './grid.config';
 
 require('./grid.component.scss');
 
@@ -7,35 +12,45 @@ require('./grid.component.scss');
     selector: 'grid-comp',
     templateUrl: './grid.component.html',
 })
+
 export class GridComponent {
-    gridOptions: GridOptions = {}
-    columnDefs: ColDef[];
-    rowData: any;
-
-    constructor(){
-
-    }
+    gridOptions: GridOptions;
+    subscriptions: Subscription[];
+    
+    constructor(
+        private GridService: GridService
+    ) {}
 
     ngOnInit(){
-        this.columnDefs = [
-            {headerName: 'Title', field: 'title' },
-            {headerName: 'Artist', field: 'artist' },
-            {headerName: 'Youtube Link', field: 'youtube'}
-        ];
+        this.subscriptions = [];
+    
+        this.gridOptions = {
+            columnDefs: GRID_CONFIG.COLUMN_DEFS,
+            rowData: []
+        }
 
-        this.rowData = [
-            {title: "In The Fall", artist: "Future Island", youtube: "https://youtu.be/0rUgAPuMlPw"}
-        ];
     }
 
     ngAfterViewInit(){
-        this.gridOptions.api.setColumnDefs(this.columnDefs);
-        this.gridOptions.api.setRowData(this.rowData)
+        const calls = [
+            this.GridService.getAllMockPlaylists(),
+            this.GridService.getAllMockSongs()
+        ];
+        this.subscriptions.push(forkJoin(...calls).subscribe((data) => {
+            const playlists = data[0];
+            const songs = data[1];
+            this.gridOptions.api.setRowData(songs.Songs);
+        }))
+
     }
 
 
     ngOnDestroy(){
+        if (this.subscriptions) {
+            this.subscriptions.forEach((s) => s.unsubscribe());
 
+        }
+        this.subscriptions.length = 0;
     }
     
     

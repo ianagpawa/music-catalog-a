@@ -2,7 +2,7 @@
   "name": "music-catalog-angular",
   "port": "8080",
   "version": "1.0.0",
-  "description": "Angular webpack project seed",
+  "description": "Angular music catalog",
   "author": "Ian Agpawa",
   "scripts": {
     "start": "webpack-dev-server --inline --progress --port 8080",
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/core-js": "^0.9.37",
     "@types/jasmine": "2.5.36",
-    "@types/node": "^6.0.113",
+    "@types/node": "^6.0.116",
     "angular2-template-loader": "^0.6.0",
     "awesome-typescript-loader": "^3.0.4",
     "css-loader": "^0.26.1",

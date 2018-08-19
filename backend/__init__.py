@@ -25,7 +25,18 @@ def get_playlist(playlist_id):
     '''
     return session.query(Playlist).filter_by(id=playlist_id).one()
 
-def getSongs(playlist_id):
+def get_user(user_id):
+    '''
+    get_playlist: Method for getting playlist for catalog.
+    Args:
+        playlist_id (int): Playlist ID number.
+    Returns:
+        Object of the playlist
+    '''
+    return session.query(User).filter_by(id=user_id).one()
+
+
+def get_songs(playlist_id):
     '''
     getSongs:   Method for retrieving songs in a playlist.
     Args:
@@ -41,6 +52,12 @@ def index():
     return 'Hello World'
 
 
+@app.route("/users/JSON/")
+def showUsersJSON():
+    users = session.query(User).all()
+    return jsonify(Users=[user.serialize for user in users])
+
+
 @app.route("/playlists/JSON/")
 def showPlaylistsJSON():
     '''
@@ -50,7 +67,7 @@ def showPlaylistsJSON():
     return jsonify(Playlists=[playlist.serialize for playlist in playlists])
 
 
-@app.route("/playlist/<int:playlist_id>/songs/JSON/")
+@app.route("/playlist/<int:playlist_id>/JSON/")
 def showSongsJSON(playlist_id):
     '''
     showSongsJSON:  Method for JSON of songs in a playlist.
@@ -59,11 +76,11 @@ def showSongsJSON(playlist_id):
     Returns:
         JSON of songs metadata in a playlist.
     '''
-    songs = getSongs(playlist_id)
+    songs = get_songs(playlist_id)
     return jsonify(Songs=[song.serialize for song in songs])
 
 
-@app.route('/playlist/<int:playlist_id>/songs/<int:song_id>/JSON/')
+@app.route('/playlist/<int:playlist_id>/<int:song_id>/JSON/')
 def showSingleJSON(playlist_id, song_id):
     '''
     showSingleJSON: Method for JSON of a song.
@@ -76,6 +93,11 @@ def showSingleJSON(playlist_id, song_id):
     song = session.query(Song).filter_by(id=song_id).one()
     return jsonify(Song=song.serialize)
 
+
+@app.route('/songs/JSON/')
+def showAllSongsJSON():
+    songs = session.query(Song).all()
+    return jsonify(Songs=[song.serialize for song in songs])
 
 
 if __name__ == '__main__':
