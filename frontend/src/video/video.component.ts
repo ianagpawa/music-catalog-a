@@ -20,19 +20,7 @@ export class VideoComponent {
     
     constructor(private GridService: GridService) {
         this.subscriptions = [];
-        if (this.GridService.listOfSongs) {
-            this.subscriptions.push(this.GridService.listOfSongs.subscribe((data) => {
-                setTimeout( () => {
-                    this.song = data.rowsToDisplay[0].data;
-                })
-                
-                
-                this.songList = data.rowsToDisplay.map((rowNode: any) => {
-                    return rowNode.data.youtube
-                })
-                
-            }))
-        }
+        
     }
 
     ngOnInit(){
@@ -40,13 +28,30 @@ export class VideoComponent {
     }
 
     ngAfterViewInit(){
+        if (this.GridService.listOfSongs) {
+            this.subscriptions.push(this.GridService.listOfSongs.subscribe((data) => {
+                setTimeout( () => {
+                    this.song = data.rowsToDisplay[0].data;
+                })
+                this.songList = data.rowsToDisplay.map((rowNode: any) => {
+                    return rowNode.data.youtube
+                })
+
+                if (this.player) {
+                    this.player.cuePlaylist(this.songList, 0);
+                    this.song = data.rowsToDisplay[0].data;
+                    
+                }
+            }))
+        }
+
         if (this.GridService.selectedSongStatus) {
             this.subscriptions.push(
                 this.GridService.selectedSongStatus.subscribe((data) => {
                     if (data && data.data) {
-                        const song = data.data
-                        this.player.loadVideoById(song.youtube);
-                        this.player.playVideo();
+                        const index: number = this.songList.indexOf(data.data.youtube)
+                        this.player.playVideoAt(index);
+
                     }
                     
                 })
@@ -58,7 +63,6 @@ export class VideoComponent {
     ngOnDestroy(){
         if (this.subscriptions) {
             this.subscriptions.forEach((s) => s.unsubscribe());
-
         }
         this.subscriptions.length = 0;
     }
@@ -66,6 +70,9 @@ export class VideoComponent {
     playerReady(player: YT.Player) {
         this.player = player;
         this.player.cuePlaylist(this.songList, 0);
+        // setTimeout( () => {
+        //     this.song = data.rowsToDisplay[0].data;
+        // })
         // console.log('player instance', player);
     }
     onStateChange(event: any) {

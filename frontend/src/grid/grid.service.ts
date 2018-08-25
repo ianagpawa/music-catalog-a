@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { ApiService } from '../api/api.service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 
 @Injectable()
 export class GridService {
@@ -11,7 +11,9 @@ export class GridService {
 
     constructor(
         private ApiService: ApiService
-    ) { }
+    ) { 
+        
+    }
 
     getAllMockPlaylists() {
         return this.ApiService.getAllMockPlaylists();
