@@ -16,7 +16,7 @@ export class VideoComponent {
     player: YT.Player;
     artist: string ='test'
     title: string = 'Something'
-    info: string = 'test info'
+    genre: string = 'test info'
     private id: string = 'i-LuC518Euc';
     
     
@@ -34,6 +34,7 @@ export class VideoComponent {
                         const song = data.data
                         this.title = song.title;
                         this.artist = song.artist;
+                        this.genre = song.genre;
                         this.player.loadVideoById(song.youtube);
                         this.player.playVideo();
                     }

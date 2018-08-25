@@ -46,11 +46,11 @@ export class GridComponent {
         ];
         this.subscriptions.push(forkJoin(...calls).subscribe((data) => {
             this.playlists = data[0].Playlists;
-            const songs = data[1].Songs;
+            let songs = data[1].Songs;
 
             songs.map((song: Song) => {
                 song.playlist_id = this.playlists.find((playlist: Playlist) => {
-                    return playlist.id === song.playlist_id
+                    return playlist.id === song.playlist_id;
                 }).name;
                 return song;
             })
