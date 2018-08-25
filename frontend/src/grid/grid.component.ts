@@ -4,6 +4,8 @@ import { GridService } from './grid.service';
 import { Subscription } from 'rxjs';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 
+import { Song, Playlist } from '../root/root.interfaces';
+
 import { GRID_CONFIG } from './grid.config';
 
 require('./grid.component.scss');
@@ -16,6 +18,7 @@ require('./grid.component.scss');
 export class GridComponent {
     gridOptions: GridOptions;
     subscriptions: Subscription[];
+    playlists: any;
     
     
     constructor(
@@ -42,9 +45,17 @@ export class GridComponent {
             this.GridService.getAllMockSongs()
         ];
         this.subscriptions.push(forkJoin(...calls).subscribe((data) => {
-            const playlists = data[0];
-            const songs = data[1];
-            this.gridOptions.api.setRowData(songs.Songs);
+            this.playlists = data[0].Playlists;
+            const songs = data[1].Songs;
+
+            songs.map((song: Song) => {
+                song.playlist_id = this.playlists.find((playlist: Playlist) => {
+                    return playlist.id === song.playlist_id
+                }).name;
+                return song;
+            })
+
+            this.gridOptions.api.setRowData(songs);
         }))
 
     }
