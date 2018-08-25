@@ -2,15 +2,14 @@
       <div class='row col-md-6'>
             <div class='col-md-6' id='youtube-player'>
                   <youtube-player
-                        [videoId]="id"
-                        (ready)="savePlayer($event)"
+                        (ready)="playerReady($event)"
                         (change)="onStateChange($event)">
                   </youtube-player>
             </div>
-            <div class='col-md-6'>
-                  <h2>{{title}}</h2>
-                  <h4>{{artist}}</h4>
-                  {{genre}}
+            <div *ngIf='song && song.title && song.artist && song.genre' class='col-md-6'>
+                  <h2>{{song.title}}</h2>
+                  <h4>{{song.artist}}</h4>
+                  {{song.genre}}
             </div>
       </div>
 </div>

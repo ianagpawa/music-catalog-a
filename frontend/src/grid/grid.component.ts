@@ -34,7 +34,8 @@ export class GridComponent {
             onRowDoubleClicked: (rowData: any) => {
                 this.GridService.setSelectedSong(rowData)
             },
-            enableSorting: true
+            enableSorting: true,
+            enableColResize: true
         }
 
     }
@@ -45,17 +46,20 @@ export class GridComponent {
             this.GridService.getAllMockSongs()
         ];
         this.subscriptions.push(forkJoin(...calls).subscribe((data) => {
-            this.playlists = data[0].Playlists;
+            let listing = data[0].Playlists;
             let songs = data[1].Songs;
 
             songs.map((song: Song) => {
-                song.playlist_id = this.playlists.find((playlist: Playlist) => {
+                song.playlist_id = listing.find((playlist: Playlist) => {
                     return playlist.id === song.playlist_id;
                 }).name;
                 return song;
             })
 
             this.gridOptions.api.setRowData(songs);
+
+            // this.gridOptions.api.selectAllFiltered();
+            this.GridService.setSongList(this.gridOptions.api.getModel());
         }))
 
     }

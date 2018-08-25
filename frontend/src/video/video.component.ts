@@ -14,16 +14,29 @@ require('./video.component.scss');
 export class VideoComponent {
     subscriptions: Subscription[];
     player: YT.Player;
-    artist: string ='test'
-    title: string = 'Something'
-    genre: string = 'test info'
-    private id: string = 'i-LuC518Euc';
+    song: any; 
+    songList: any[] = [];
     
     
-    constructor(private GridService: GridService) {}
+    constructor(private GridService: GridService) {
+        this.subscriptions = [];
+        if (this.GridService.listOfSongs) {
+            this.subscriptions.push(this.GridService.listOfSongs.subscribe((data) => {
+                setTimeout( () => {
+                    this.song = data.rowsToDisplay[0].data;
+                })
+                
+                
+                this.songList = data.rowsToDisplay.map((rowNode: any) => {
+                    return rowNode.data.youtube
+                })
+                
+            }))
+        }
+    }
 
     ngOnInit(){
-        this.subscriptions = [];
+        
     }
 
     ngAfterViewInit(){
@@ -32,9 +45,6 @@ export class VideoComponent {
                 this.GridService.selectedSongStatus.subscribe((data) => {
                     if (data && data.data) {
                         const song = data.data
-                        this.title = song.title;
-                        this.artist = song.artist;
-                        this.genre = song.genre;
                         this.player.loadVideoById(song.youtube);
                         this.player.playVideo();
                     }
@@ -42,8 +52,6 @@ export class VideoComponent {
                 })
             )
         }
-        
-        
     }
 
 
@@ -55,12 +63,13 @@ export class VideoComponent {
         this.subscriptions.length = 0;
     }
     
-    savePlayer(player: YT.Player) {
+    playerReady(player: YT.Player) {
         this.player = player;
-        console.log('player instance', player);
+        this.player.cuePlaylist(this.songList, 0);
+        // console.log('player instance', player);
     }
     onStateChange(event: any) {
-        console.log('player state', event.data);
+        // console.log('player state', event.data);
     }
     
 
