@@ -37,11 +37,18 @@ export class GridComponent {
             enableSorting: true,
             enableColResize: true,
             animateRows: true,
+            floatingFilter: true,
+            defaultColDef: {
+                floatingFilterComponentParams: {
+                    suppressFilterButton: true
+                },
+                suppressMenu: true
+            },
             onFilterChanged: () => {
-
+                this.updateGridModel();
             },
             onSortChanged: () => {
-                this.GridService.setSongList(this.gridOptions.api.getModel());
+                this.updateGridModel();
             }
         } as GridOptions;
 
@@ -73,5 +80,8 @@ export class GridComponent {
         this.subscriptions.length = 0;
     }
     
+    updateGridModel(): void {
+        this.GridService.setSongList(this.gridOptions.api.getModel());
+    }
 
 }

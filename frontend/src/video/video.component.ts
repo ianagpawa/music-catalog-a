@@ -20,6 +20,9 @@ export class VideoComponent {
     
     constructor(private GridService: GridService) {
         this.subscriptions = [];
+
+        console.log(window.screen.height);
+        console.log(window.screen.width)
         
     }
 
@@ -51,9 +54,7 @@ export class VideoComponent {
                     if (data && data.data) {
                         const index: number = this.songList.indexOf(data.data.youtube)
                         this.player.playVideoAt(index);
-
                     }
-                    
                 })
             )
         }
@@ -70,13 +71,9 @@ export class VideoComponent {
     playerReady(player: YT.Player) {
         this.player = player;
         this.player.cuePlaylist(this.songList, 0);
-        // setTimeout( () => {
-        //     this.song = data.rowsToDisplay[0].data;
-        // })
-        // console.log('player instance', player);
     }
     onStateChange(event: any) {
-        // console.log('player state', event.data);
+    
     }
     
 
