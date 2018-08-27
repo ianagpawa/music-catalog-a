@@ -6,10 +6,10 @@
                         (change)="onStateChange($event)">
                   </youtube-player>
             </div>
-            <div *ngIf='song && song.title && song.artist && song.genre' class='col-md-6'>
+            <div class='col-md-6'>
                   <h2>{{song.title}}</h2>
                   <h4>{{song.artist}}</h4>
-                  {{song.genre}}
+                  <h4>{{song.genre}}</h4>
             </div>
       </div>
 </div>

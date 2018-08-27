@@ -14,7 +14,11 @@ require('./video.component.scss');
 export class VideoComponent {
     subscriptions: Subscription[];
     player: YT.Player;
-    song: any; 
+    song: any = {
+        title: "Song Title",
+        artist: "Artist",
+        genre: 'Genre'
+    }; 
     songList: any[] = [];
     
     
@@ -52,8 +56,21 @@ export class VideoComponent {
             this.subscriptions.push(
                 this.GridService.selectedSongStatus.subscribe((data) => {
                     if (data && data.data) {
-                        const index: number = this.songList.indexOf(data.data.youtube)
+                        const index: number = this.songList.indexOf(data.data.youtube);
+
+                        // TODO: Create modal to update song link
+                        if (index === -1) {
+                            window.alert('Not Found')
+                        }
+
                         this.player.playVideoAt(index);
+                        
+                        this.song = {
+                            title: data.data.title,
+                            artist: data.data.artist,
+                            genre: data.data.genre
+                        }
+
                     }
                 })
             )
@@ -73,7 +90,9 @@ export class VideoComponent {
         this.player.cuePlaylist(this.songList, 0);
     }
     onStateChange(event: any) {
-    
+        if (event.data === 5) {
+            this.songList = this.player.getPlaylist();
+        }
     }
     
 
