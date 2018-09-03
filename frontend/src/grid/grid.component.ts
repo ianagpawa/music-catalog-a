@@ -66,7 +66,7 @@ export class GridComponent {
                     return playlist.id === song.playlist_id;
                 }).name;
                 return song;
-            })
+            }).reverse();
             this.gridOptions.api.setRowData(songs);
             this.GridService.setSongList(this.gridOptions.api.getModel());
         }));

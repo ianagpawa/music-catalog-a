@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { forkJoin } from 'rxjs/observable/forkJoin';
 import { GridService } from '../grid/grid.service';
+
+import { Song } from '../root/root.interfaces';
 
 
 require('./video.component.scss');
@@ -14,16 +15,13 @@ require('./video.component.scss');
 export class VideoComponent {
     subscriptions: Subscription[];
     player: YT.Player;
-    song: any = {
-        title: "Song Title",
-        artist: "Artist",
-        genre: 'Genre'
-    }; 
+    song: Song;
     songList: any[] = [];
     
     
     constructor(private GridService: GridService) {
         this.subscriptions = [];
+        this.song = {} as any;
 
         console.log(window.screen.height);
         console.log(window.screen.width)
@@ -39,7 +37,7 @@ export class VideoComponent {
             this.subscriptions.push(this.GridService.listOfSongs.subscribe((data) => {
                 setTimeout( () => {
                     this.song = data.rowsToDisplay[0].data;
-                })
+                });
                 this.songList = data.rowsToDisplay.map((rowNode: any) => {
                     return rowNode.data.youtube
                 })
@@ -47,7 +45,6 @@ export class VideoComponent {
                 if (this.player) {
                     this.player.cuePlaylist(this.songList, 0);
                     this.song = data.rowsToDisplay[0].data;
-                    
                 }
             }))
         }
@@ -68,9 +65,13 @@ export class VideoComponent {
                         this.song = {
                             title: data.data.title,
                             artist: data.data.artist,
-                            genre: data.data.genre
+                            genre: data.data.genre,
+                            id: data.data.id,
+                            rendition: data.data.rendition,
+                            youtube: data.data.youtube,
+                            time_created: data.data.time_created,
+                            playlist_id: data.data.playlist_id
                         }
-
                     }
                 })
             )
@@ -85,15 +86,16 @@ export class VideoComponent {
         this.subscriptions.length = 0;
     }
     
+
     playerReady(player: YT.Player) {
         this.player = player;
         this.player.cuePlaylist(this.songList, 0);
     }
+
+
     onStateChange(event: any) {
         if (event.data === 5) {
             this.songList = this.player.getPlaylist();
         }
     }
-    
-
 }
