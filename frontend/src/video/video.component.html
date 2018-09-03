@@ -1,0 +1,21 @@
+<div class='row justify-content-center'>
+      <div class='row'>
+            <div class='col-md-2'>
+                  <h4>{{song.title}}</h4> 
+                  <h5>by {{song.artist}}</h5>
+                  <h6>in the {{song.playlist_id}} playlist</h6>
+            </div>
+            <div class='col-md-8' id='youtube-player'>
+                  <youtube-player
+                        [height]="height"
+                        [width]='width'
+                        (ready)="playerReady($event)"
+                        (change)="onStateChange($event)">
+                  </youtube-player>
+            </div>
+      </div>
+      <!-- <div class="col-md-6 text-center bold">
+            <h3>Currently Playing</h3>
+            "{{song.title}}" by {{song.artist}}
+      </div> -->
+</div>

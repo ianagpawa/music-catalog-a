@@ -1,8 +1,8 @@
 export interface Playlist {
     id: number,
     name: string,
-    songs: Song[],
-    dateAdded: Date;
+    description: string,
+    time_created: Date
 }
 
 export interface Song {
@@ -10,6 +10,8 @@ export interface Song {
     title: string,
     artist: string,
     youtube: string,
-    dateAdded: Date
+    time_created: Date,
+    playlist_id: number,
+    genre: string,
+    rendition: string
 }
-
