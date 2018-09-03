@@ -65,6 +65,8 @@ export class GridComponent {
                 song.playlist_id = listing.find((playlist: Playlist) => {
                     return playlist.id === song.playlist_id;
                 }).name;
+
+                song.time_created = this.getFormattedDate(song.time_created);
                 return song;
             }).reverse();
             this.gridOptions.api.setRowData(songs);
@@ -84,4 +86,12 @@ export class GridComponent {
         this.GridService.setSongList(this.gridOptions.api.getModel());
     }
 
+    // TODO
+    getFormattedDate(date: Date) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const time = new Date(date);
+        // return time.to("en-US", options);
+        // return Date.parse(time)
+        return time;
+    }
 }

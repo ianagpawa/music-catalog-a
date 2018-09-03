@@ -11,33 +11,21 @@ export const GRID_CONFIG = {
     ] as ColDef[]
 }
 
-const dateComparator = (date1: any, date2: any) => {
+function dateComparator (date1: any, date2: any) {
     const date1Number = this.monthToComparableNumber(date1);
     const date2Number = this.monthToComparableNumber(date2);
-    if (date1Number === null && date2Number === null) {
-      return 0;
-    }
-    if (date1Number === null) {
-      return -1;
-    }
-    if (date2Number === null) {
-      return 1;
-    }
-    return date1Number - date2Number;
-    // const date1Number = this.monthToComparableNumber(date1);
-    // const date2Number = this.monthToComparableNumber(date2);
-    // return !date1Number && !date2Number
-    //     ? 0
-    //     : (!date1Number)
-    //         ? -1
-    //         : (!date2Number)
-    //             ? 1
-    //             : date1Number - date2Number
+    return !date1Number && !date2Number
+        ? 0
+        : (!date1Number)
+            ? -1
+            : (!date2Number)
+                ? 1
+                : date1Number - date2Number
 }
 
 
 
-const monthToComparableNumber = (date: any) => {
+function monthToComparableNumber(date: any) {
     if (date === undefined || date === null || date.length !== 10) {
         return null;
     }

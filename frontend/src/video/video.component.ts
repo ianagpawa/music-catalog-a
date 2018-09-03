@@ -17,14 +17,16 @@ export class VideoComponent {
     player: YT.Player;
     song: Song;
     songList: any[] = [];
+    height: any;
+    width: any;
     
     
     constructor(private GridService: GridService) {
         this.subscriptions = [];
         this.song = {} as any;
 
-        console.log(window.screen.height);
-        console.log(window.screen.width)
+        this.height = window.screen.height / 2;
+        this.width  = window.screen.width / 2;
         
     }
 
