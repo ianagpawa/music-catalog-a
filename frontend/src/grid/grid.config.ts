@@ -6,7 +6,7 @@ export const GRID_CONFIG = {
         {headerName: 'Title', field: 'title' },
         {headerName: 'Artist', field: 'artist' },
         {headerName: 'Playlist', field: 'playlist_id'},
-        {headerName: 'Genre', field: 'genre'},
+        {headerName: 'Genre', field: 'genre', width: 125},
         // {headerName: 'Date added', field: 'time_created', comparator: this.dateComparator}
     ] as ColDef[]
 }

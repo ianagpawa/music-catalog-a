@@ -25,7 +25,7 @@ export class VideoComponent {
         this.subscriptions = [];
         this.song = {} as any;
 
-        this.height = window.screen.height / 2;
+        this.height = window.screen.height / 1.75;
         this.width  = window.screen.width / 2;
         
     }
