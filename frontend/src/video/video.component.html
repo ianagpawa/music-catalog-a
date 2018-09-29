@@ -1,5 +1,5 @@
 <div class='justify-content-center'>
-      <div class='w-100' id='youtube-player'>
+      <div id='youtube-player'>
             <youtube-player
                   [height]="height"
                   [width]='width'
@@ -7,7 +7,7 @@
                   (change)="onStateChange($event)">
             </youtube-player>
       </div>
-      <div class='w-100'>
+      <div>
             <h4>{{song.title}}</h4> 
             <h6>by</h6>
             <h5>{{song.artist}}</h5>

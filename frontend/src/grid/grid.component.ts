@@ -35,7 +35,7 @@ export class GridComponent {
                 this.GridService.setSelectedSong(rowData)
             },
             enableSorting: true,
-            enableColResize: true,
+            enableColResize: false,
             suppressHorizontalScroll: true,
             animateRows: true,
             floatingFilter: true,

@@ -26,7 +26,7 @@ export class VideoComponent {
         this.song = {} as any;
 
         this.height = window.screen.height / 1.75;
-        this.width  = window.screen.width / 2;
+        this.width  = (window.screen.width / 2) - 25;
         
     }
 

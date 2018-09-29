@@ -1,0 +1,33 @@
+html {
+    font-family: 'AdobeGaramondW01-Regula', georgia, serif;
+    font-size: 18px;
+  }
+  
+  // Header --------------------------------------------------
+  
+header {
+    background: #2E1811;
+    background-image: url('https://images.pexels.com/photos/47454/pexels-photo-47454.jpeg');
+    background-size: cover;
+    padding: 2rem 0;
+    color: #fff;
+    text-shadow: 0px 1px 6px rgba(0,0,0,0.6);
+    display: flex;
+    height: 500px; // This was added to make the header taller 
+                   // in browsers that don't support viewport units
+    height: 100vh; // This overrides the height: 500px completely, 
+                  // replacing it in browsers that do understand
+}
+h1 {
+    font-family: 'BauerBodoniW01-BoldDisp', georgia, serif;  
+    width: 80%;
+    margin: 0 auto;
+    line-height: 1.1em;
+    font-size: 2rem;
+    @media (min-width: 500px) {
+        font-size: 4rem;
+    };
+    padding: 2em 0; // This was added to push the headline down in 
+                    // browsers that don't understand flexbox. Otherwise it has no affect. 
+    margin: auto;
+}
