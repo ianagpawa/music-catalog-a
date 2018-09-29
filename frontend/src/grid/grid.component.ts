@@ -36,6 +36,7 @@ export class GridComponent {
             },
             enableSorting: true,
             enableColResize: true,
+            suppressHorizontalScroll: true,
             animateRows: true,
             floatingFilter: true,
             defaultColDef: {
@@ -70,6 +71,7 @@ export class GridComponent {
                 return song;
             }).reverse();
             this.gridOptions.api.setRowData(songs);
+            this.gridOptions.api.sizeColumnsToFit();
             this.GridService.setSongList(this.gridOptions.api.getModel());
         }));
     }
