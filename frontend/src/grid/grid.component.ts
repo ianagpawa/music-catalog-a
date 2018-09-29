@@ -1,11 +1,9 @@
-import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { ColDef, GridOptions } from 'ag-grid';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { GridOptions } from 'ag-grid';
 import { GridService } from './grid.service';
 import { Subscription, Subject } from 'rxjs';
 import { forkJoin } from 'rxjs/observable/forkJoin';
-
 import { Song, Playlist } from '../root/root.interfaces';
-
 import { GRID_CONFIG } from './grid.config';
 
 require('./grid.component.scss');
@@ -15,7 +13,7 @@ require('./grid.component.scss');
     templateUrl: './grid.component.html',
 })
 
-export class GridComponent {
+export class GridComponent implements OnInit, AfterViewInit, OnDestroy {
     gridOptions: GridOptions;
     subscriptions: Subscription[];
     playlists: any;
@@ -71,9 +69,10 @@ export class GridComponent {
                 return song;
             }).reverse();
             this.gridOptions.api.setRowData(songs);
-            this.gridOptions.api.sizeColumnsToFit();
+            // this.gridOptions.api.sizeColumnsToFit();
             this.GridService.setSongList(this.gridOptions.api.getModel());
         }));
+        this.gridOptions.api.sizeColumnsToFit();
     }
 
 

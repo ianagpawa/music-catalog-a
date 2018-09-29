@@ -12,7 +12,7 @@ require('./video.component.scss');
     templateUrl: './video.component.html',
 })
 
-export class VideoComponent {
+export class VideoComponent implements OnInit, AfterViewInit, OnDestroy {
     subscriptions: Subscription[];
     player: YT.Player;
     song: Song;
@@ -25,8 +25,8 @@ export class VideoComponent {
         this.subscriptions = [];
         this.song = {} as any;
 
-        this.height = window.screen.height / 1.75;
-        this.width  = (window.screen.width / 2) - 25;
+        this.height = window.screen.height / 2.5;
+        this.width  = (window.screen.width / 2.5);
         
     }
 
