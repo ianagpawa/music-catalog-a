@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
+import { CommonModule } from '@angular/common';
+import { FormsModule }    from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { RootComponent } from './root.component';
 import { GridComponent } from '../grid/grid.component';
@@ -13,7 +17,11 @@ import { GridService } from '../grid/grid.service';
 
 @NgModule({
     imports: [
+        CommonModule,
+        FormsModule,
         BrowserModule,
+        BrowserAnimationsModule,
+        DropdownModule,
         YoutubePlayerModule,
         AgGridModule.withComponents([
             
