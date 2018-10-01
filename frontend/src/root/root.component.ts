@@ -9,6 +9,7 @@ require('./root.component.scss');
 export class RootComponent { 
     playlists: any[];
     selectedPlaylist: any;
+    displaySidebar: boolean = false;
 
     constructor() {
         this.playlists = [
@@ -18,5 +19,7 @@ export class RootComponent {
             {name: 'Istanbul', code: 'IST'},
             {name: 'Paris', code: 'PRS'}
         ];
+
+        this.displaySidebar = true;
     }
 }

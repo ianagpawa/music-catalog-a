@@ -10,6 +10,14 @@
       optionLabel="name">
     </p-dropdown>
     <video-comp class='w-100'></video-comp>
-    <grid-comp class='w-100' style='height:85vh;width:800px;'></grid-comp>
+    <!-- <grid-comp class='w-100' style='height:85vh;width:800px;'></grid-comp> -->
   </div>
 </div>
+
+<p-sidebar [(visible)]="displaySidebar"
+  styleClass="ui-sidebar-lg"
+  [dismissible]='true'
+  position='right'>
+  <grid-comp class='w-100' style='height:85vh;width:800px;'></grid-comp>
+</p-sidebar>
+  
