@@ -11,6 +11,7 @@ require('./root.component.scss');
 export class RootComponent implements OnInit, AfterViewInit, OnDestroy { 
     playlists: any[];
     selectedPlaylist: any;
+    displaySidebar: boolean;
 
     subscriptions: Subscription[];
 
@@ -19,6 +20,7 @@ export class RootComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor ( private GridService: GridService ) { 
         this.subscriptions = [];
         this.output = new EventEmitter();
+        this.displaySidebar = false;
         
     }
 
@@ -42,5 +44,9 @@ export class RootComponent implements OnInit, AfterViewInit, OnDestroy {
 
     onSelectedPlaylist() {
         this.output.emit(this.selectedPlaylist)
+    }
+
+    openSidebar = (event: any) => {
+        this.displaySidebar = true;
     }
 }
