@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { GridOptions } from 'ag-grid';
+import { GridOptions, IFilterComp } from 'ag-grid';
 import { GridService } from './grid.service';
 import { Subscription, Subject } from 'rxjs';
 import { forkJoin } from 'rxjs/observable/forkJoin';
@@ -33,6 +33,7 @@ export class GridComponent implements OnInit, AfterViewInit, OnDestroy {
             onRowDoubleClicked: (rowData: any) => {
                 this.GridService.setSelectedSong(rowData)
             },
+            enableFilter: true,
             enableSorting: true,
             enableColResize: false,
             suppressHorizontalScroll: true,
@@ -77,10 +78,9 @@ export class GridComponent implements OnInit, AfterViewInit, OnDestroy {
 
         if (this.input) {
             this.subscriptions.push(this.input.subscribe((data: any) => {
-                
+                this.gridOptions.api.setQuickFilter(data.name)
             }))
         }
-
     }
 
 
