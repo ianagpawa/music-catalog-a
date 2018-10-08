@@ -5,3 +5,26 @@
 @import "~primeicons/primeicons.css";
 @import "~primeng/resources/themes/nova-light/theme.css";
 @import "~primeng/resources/primeng.min.css";
+
+.padding-top-0 {
+    padding-top: 0px;
+}
+
+.padding-bottom-0 {
+    padding-bottom: 0;
+}
+
+.padding-y-3vh {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+
+
+.padding-top-5vh {
+    padding-top: 5vh;
+}
+
+.ui-dropdown .ui-dropdown-label {
+    width: 20vw;
+}
