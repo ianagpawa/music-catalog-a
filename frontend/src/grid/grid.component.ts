@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { GridOptions } from 'ag-grid';
 import { GridService } from './grid.service';
 import { Subscription, Subject } from 'rxjs';
@@ -18,7 +18,8 @@ export class GridComponent implements OnInit, AfterViewInit, OnDestroy {
     subscriptions: Subscription[];
     playlists: any;
     gridModel: Subject<any> = new Subject();
-    
+
+    @Input() input: EventEmitter<any>;
     
     constructor(
         private GridService: GridService
@@ -73,6 +74,13 @@ export class GridComponent implements OnInit, AfterViewInit, OnDestroy {
             this.GridService.setSongList(this.gridOptions.api.getModel());
         }));
         this.gridOptions.api.sizeColumnsToFit();
+
+        if (this.input) {
+            this.subscriptions.push(this.input.subscribe((data: any) => {
+                
+            }))
+        }
+
     }
 
 

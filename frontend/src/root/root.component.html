@@ -6,11 +6,17 @@
       [filter]="true"
       [showClear]="true"
       [autoWidth]='false'
+      (onChange)='onSelectedPlaylist()'
       placeholder="Select a playlist"
       class='w-100 padding-y-3vh'
       optionLabel="name">
     </p-dropdown>
     <video-comp class='w-100'></video-comp>
-    <grid-comp class='w-100' style='height:85vh;width:800px;'></grid-comp>
+    <grid-comp 
+      class='w-100' 
+      style='height:85vh;width:800px;'
+      [input]='output'
+    ></grid-comp>
   </div>
 </div>
+ 

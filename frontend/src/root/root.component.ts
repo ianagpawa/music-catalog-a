@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit  } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output, OnDestroy, EventEmitter  } from '@angular/core';
 import { GridService } from '../grid/grid.service';
-import { Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject, Subject, Observable } from 'rxjs';
 
 require('./root.component.scss');
 
@@ -8,13 +8,18 @@ require('./root.component.scss');
     selector: 'root-app',
     templateUrl: './root.component.html',
 })
-export class RootComponent { 
+export class RootComponent implements OnInit, AfterViewInit, OnDestroy { 
     playlists: any[];
     selectedPlaylist: any;
+
     subscriptions: Subscription[];
+
+    @Output() output: EventEmitter<any>;
 
     constructor ( private GridService: GridService ) { 
         this.subscriptions = [];
+        this.output = new EventEmitter();
+        
     }
 
     ngOnInit() {
@@ -24,5 +29,18 @@ export class RootComponent {
             }
         }))
     }
+
+    ngAfterViewInit() {
+
+    }
+
     
+    ngOnDestroy() {
+        this.subscriptions.forEach(s => s.unsubscribe)
+        this.subscriptions.length = 0;
+    }
+
+    onSelectedPlaylist() {
+        this.output.emit(this.selectedPlaylist)
+    }
 }
