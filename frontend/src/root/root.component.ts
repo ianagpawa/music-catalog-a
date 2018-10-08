@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit  } from '@angular/core';
+import { GridService } from '../grid/grid.service';
+import { Subscription } from 'rxjs';
 
 require('./root.component.scss');
 
@@ -9,14 +11,18 @@ require('./root.component.scss');
 export class RootComponent { 
     playlists: any[];
     selectedPlaylist: any;
+    subscriptions: Subscription[];
 
-    constructor() {
-        this.playlists = [
-            {name: 'New York', code: 'NY'},
-            {name: 'Rome', code: 'RM'},
-            {name: 'London', code: 'LDN'},
-            {name: 'Istanbul', code: 'IST'},
-            {name: 'Paris', code: 'PRS'}
-        ];
+    constructor ( private GridService: GridService ) { 
+        this.subscriptions = [];
     }
+
+    ngOnInit() {
+        this.subscriptions.push(this.GridService.getAllMockPlaylists().subscribe((data) => {
+            if (data) {
+                this.playlists = data.Playlists;
+            }
+        }))
+    }
+    
 }
